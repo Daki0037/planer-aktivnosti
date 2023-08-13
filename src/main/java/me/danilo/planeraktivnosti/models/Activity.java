@@ -4,9 +4,9 @@ import java.util.Date;
 
 public class Activity {
 
-    private String name, description;
-    private int id, priority;
-    private boolean completed;
+    private String name = "", description = "";
+    private int id, priority = 2;
+    private boolean completed = false;
 
     private Date startTime, endTime;
 

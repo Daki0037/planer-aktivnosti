@@ -37,7 +37,7 @@
                         </Pane>
                      </center>
                   </BorderPane>
-                  <VBox prefHeight="548.0" prefWidth="782.0" />
+                  <VBox fx:id="activitiesPane" prefHeight="548.0" prefWidth="782.0" />
                </children></VBox>
          </right>
       </BorderPane>

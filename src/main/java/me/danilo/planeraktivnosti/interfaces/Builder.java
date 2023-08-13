@@ -1,16 +1,18 @@
 package me.danilo.planeraktivnosti.interfaces;
 
+import me.danilo.planeraktivnosti.models.builders.ActivityBuilder;
+
 import java.util.Date;
 
 public interface Builder {
 
-    void setId(int id);
-    void setName(String name);
-    void setDescription(String description);
-    void setPriority(int priority);
-    void setCompleted(boolean completed);
-    void setStartTime(Date startTime);
-    void setEndTime(Date endTime);
+    ActivityBuilder setId(int id);
+    ActivityBuilder setName(String name);
+    ActivityBuilder setDescription(String description);
+    ActivityBuilder setPriority(int priority);
+    ActivityBuilder setCompleted(boolean completed);
+    ActivityBuilder setStartTime(Date startTime);
+    ActivityBuilder setEndTime(Date endTime);
 
 
 }

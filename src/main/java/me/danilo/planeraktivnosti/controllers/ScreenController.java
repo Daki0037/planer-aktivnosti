@@ -36,4 +36,8 @@ public class ScreenController {
         main.setRoot(screens.get(name));
     }
 
+    public Scene getScene() {
+        return main;
+    }
+
 }

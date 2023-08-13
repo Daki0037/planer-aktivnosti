@@ -29,20 +29,20 @@ public class Login {
 
     public void onLoginBtn() throws NoSuchAlgorithmException, UnsupportedEncodingException {
 
-//        String username = usernameField.getText();
-//        String password = passwordField.getText();
-//
-//        if(!isUsernameValid(username))
-//            return;
-//
-//        String hashedPassword = getHashedPassword(password);
-//
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if(!isUsernameValid(username))
+            return;
+
+        String hashedPassword = getHashedPassword(password);
+
 //        authentificateUser(username, hashedPassword);
-//
+
         User user = User.getInstance();
         user.setId(1);
         user.setUsername("Petar");
-        screenController.changeScreen("activityview");
+        screenController.changeScreen("main");
     }
 
     public boolean isUsernameValid(String username) {

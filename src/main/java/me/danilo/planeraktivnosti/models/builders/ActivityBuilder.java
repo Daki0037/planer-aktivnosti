@@ -13,38 +13,45 @@ public class ActivityBuilder implements Builder {
     private Date startTime, endTime;
 
     @Override
-    public void setId(int id) {
+    public ActivityBuilder setId(int id) {
         this.id = id;
+        return this;
     }
 
     @Override
-    public void setName(String name) {
+    public ActivityBuilder setName(String name) {
         this.name = name;
+        return this;
     }
 
     @Override
-    public void setDescription(String description) {
+    public ActivityBuilder setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     @Override
-    public void setPriority(int priority) {
+    public ActivityBuilder setPriority(int priority) {
         this.priority = priority;
+        return this;
     }
 
     @Override
-    public void setCompleted(boolean completed) {
+    public ActivityBuilder setCompleted(boolean completed) {
         this.completed = completed;
+        return this;
     }
 
     @Override
-    public void setStartTime(Date startTime) {
+    public ActivityBuilder setStartTime(Date startTime) {
         this.startTime = startTime;
+        return this;
     }
 
     @Override
-    public void setEndTime(Date endTime) {
+    public ActivityBuilder setEndTime(Date endTime) {
         this.endTime = endTime;
+        return this;
     }
 
 
