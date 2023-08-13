@@ -3,11 +3,14 @@ package me.danilo.planeraktivnosti.models.builders;
 import me.danilo.planeraktivnosti.interfaces.Builder;
 import me.danilo.planeraktivnosti.models.Activity;
 
+import java.util.Date;
+
 public class ActivityBuilder implements Builder {
 
     private String name, description;
     private int id, priority;
     private boolean completed;
+    private Date startTime, endTime;
 
     @Override
     public void setId(int id) {
@@ -34,7 +37,18 @@ public class ActivityBuilder implements Builder {
         this.completed = completed;
     }
 
+    @Override
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    @Override
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+
     public Activity build() {
-        return new Activity(id, name, description, priority, completed);
+        return new Activity(id, name, description, priority, completed, startTime, endTime);
     }
 }

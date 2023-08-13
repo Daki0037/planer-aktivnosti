@@ -21,6 +21,7 @@ public class Main extends Application  {
         screenController.addScreen("login", FXMLLoader.load(getClass().getResource("/me/danilo/planeraktivnosti/view/Login.fxml")));
         screenController.addScreen("register", FXMLLoader.load(getClass().getResource("/me/danilo/planeraktivnosti/view/Register.fxml")));
         screenController.addScreen("activityview", FXMLLoader.load(getClass().getResource("/me/danilo/planeraktivnosti/view/ActivityView.fxml")));
+        screenController.addScreen("add", FXMLLoader.load(getClass().getResource("/me/danilo/planeraktivnosti/view/NewActivity.fxml")));
     }
 
     @Override
