@@ -37,7 +37,7 @@ public class Login {
 
         String hashedPassword = getHashedPassword(password);
 
-//        authentificateUser(username, hashedPassword);
+        authenticateUser(username, hashedPassword);
 
         User user = User.getInstance();
         user.setId(1);
@@ -63,7 +63,7 @@ public class Login {
         return hashedPassword;
     }
 
-    public void authentificateUser(String username, String password) {
+    public void authenticateUser(String username, String password) {
         try {
             URL url = new URL("http://localhost:8080/api/auth/login");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -71,7 +71,6 @@ public class Login {
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setDoOutput(true);
 
-            // Construct and send the authentication data
             String jsonInput = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
             try (OutputStream os = connection.getOutputStream()) {
                 byte[] inputBytes = jsonInput.getBytes("utf-8");
@@ -79,7 +78,6 @@ public class Login {
             }
 
             int responseCode = connection.getResponseCode();
-            System.out.println("API Response Code: " + responseCode);
 
             connection.disconnect();
         } catch (Exception e) {

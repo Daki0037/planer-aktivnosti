@@ -26,8 +26,6 @@ public class NewActivity {
     private ActivityBuilder builder = new ActivityBuilder();
 
 
-
-
     public void onAddActivity() {
         String activityTitle = title.getText();
         String activityDescription = description.getText();
