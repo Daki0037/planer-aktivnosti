@@ -11,8 +11,8 @@ public interface Builder {
     ActivityBuilder setDescription(String description);
     ActivityBuilder setPriority(int priority);
     ActivityBuilder setCompleted(boolean completed);
-    ActivityBuilder setStartTime(Date startTime);
-    ActivityBuilder setEndTime(Date endTime);
+    ActivityBuilder setStartDate(Date startDate);
+    ActivityBuilder setEndDate(Date endDate);
 
 
 }

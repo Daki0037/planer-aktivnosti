@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +18,10 @@
       <DatePicker fx:id="startDate" layoutX="41.0" layoutY="264.0" />
       <DatePicker fx:id="endDate" layoutX="347.0" layoutY="264.0" />
       <CheckBox fx:id="completed" layoutX="258.0" layoutY="312.0" mnemonicParsing="false" text="Završen" />
-      <Button layoutX="495.0" layoutY="348.0" mnemonicParsing="false" onAction="#onAddActivity" text="Dodaj" />
-      <Button layoutX="47.0" layoutY="348.0" mnemonicParsing="false" onAction="#onReturnBtn" text="Izadji" />
+      <Button layoutX="488.0" layoutY="348.0" mnemonicParsing="false" onAction="#onAddActivity" prefHeight="25.0" prefWidth="99.0" text="Dodaj" />
+      <Button layoutX="20.0" layoutY="348.0" mnemonicParsing="false" onAction="#onReturnBtn" prefHeight="25.0" prefWidth="99.0" text="Izadji" />
+      <RadioButton layoutX="48.0" layoutY="222.0" mnemonicParsing="false" text="Low" />
+      <RadioButton layoutX="240.0" layoutY="222.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="99.0" text="Medium" />
+      <RadioButton layoutX="481.0" layoutY="222.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="77.0" text="High" />
    </children>
 </AnchorPane>

@@ -7,10 +7,11 @@ import java.util.Date;
 
 public class ActivityBuilder implements Builder {
 
-    private String name, description;
-    private int id, priority;
-    private boolean completed;
-    private Date startTime, endTime;
+    private String name = "", description = "";
+    private int id, priority = 2;
+    private boolean completed = false;
+    private Date startDate = new Date();
+    private Date endDate = new Date();
 
     @Override
     public ActivityBuilder setId(int id) {
@@ -43,19 +44,18 @@ public class ActivityBuilder implements Builder {
     }
 
     @Override
-    public ActivityBuilder setStartTime(Date startTime) {
-        this.startTime = startTime;
+    public ActivityBuilder setStartDate(Date startDate) {
+        this.startDate = startDate;
         return this;
     }
 
     @Override
-    public ActivityBuilder setEndTime(Date endTime) {
-        this.endTime = endTime;
+    public ActivityBuilder setEndDate(Date endDate) {
+        this.endDate = endDate;
         return this;
     }
 
-
     public Activity build() {
-        return new Activity(id, name, description, priority, completed, startTime, endTime);
+        return new Activity(id, name, description, priority, completed, startDate, endDate);
     }
 }

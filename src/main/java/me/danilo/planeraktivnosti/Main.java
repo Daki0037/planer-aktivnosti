@@ -28,11 +28,12 @@ public class Main extends Application  {
     public void start(Stage stage) throws IOException {
         stage.setTitle("Planer Aktivnosti - Danilo Obradović 27/2020");
         Parent root = FXMLLoader.load(getClass().getResource("/me/danilo/planeraktivnosti/view/Login.fxml"));
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 1024, 768);
         screenController.setScene(scene);
         initializeScreens();
 
         stage.setScene(scene);
+        stage.setResizable(false);
 
         stage.show();
     }

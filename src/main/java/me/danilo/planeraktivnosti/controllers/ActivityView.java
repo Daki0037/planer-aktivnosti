@@ -4,12 +4,20 @@ import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import me.danilo.planeraktivnosti.models.Activity;
+import me.danilo.planeraktivnosti.models.User;
+import me.danilo.planeraktivnosti.models.builders.ActivityBuilder;
+
+import java.util.Date;
 
 
 public class ActivityView {
 
     private ScreenController screenController = ScreenController.getInstance();
+
+    private ActivityBuilder builder = new ActivityBuilder();
 
     @FXML
     private VBox activitiesPane;
@@ -19,23 +27,35 @@ public class ActivityView {
     }
 
     public void onLogout() {
-        System.out.println("logged out");
+        User user = null;
+        screenController.changeScreen("login");
+        
+        Activity activity = builder.setId(1)
+                .setName("Ovo je neki test naslov")
+                .setDescription("Ovo je neka deskripcija za ovu aktivnost")
+                .setPriority(1).build();
+        addDynamicPane(activity);
     }
 
-    private void addDynamicPane() {
-        VBox dynamicPane = createDynamicPane("Dynamic Pane");
+    private void addDynamicPane(Activity activity) {
+        HBox activityComponent = createDynamicPane(activity);
+        activityComponent.getStyleClass().add("activity-pane");
 
-        activitiesPane.getChildren().add(dynamicPane);
+        activitiesPane.getChildren().add(activityComponent);
     }
 
-    private VBox createDynamicPane(String title) {
-        VBox pane = new VBox();
+    private HBox createDynamicPane(Activity activity) {
+        HBox pane = new HBox();
 
-        Label titleLabel = new Label(title);
-        Button actionButton = new Button("Click Me!");
-        Label descriptionLabel = new Label("This is a dynamic pane.");
+        Label idLabel = new Label(Integer.toString(activity.getId()));
+        idLabel.getStyleClass().add("activity-id");
+        Label titleLabel = new Label(activity.getName());
+        titleLabel.getStyleClass().add("activity-name");
+        Label descriptionLabel = new Label(activity.getDescription());
+        Label priorityLabel = new Label(Integer.toString(activity.getPriority()));
+        Label startDateLabel = new Label(activity.getStartDate().toString());
 
-        pane.getChildren().addAll(titleLabel, actionButton, descriptionLabel);
+        pane.getChildren().addAll(idLabel, titleLabel, descriptionLabel, priorityLabel, startDateLabel);
 
         return pane;
     }

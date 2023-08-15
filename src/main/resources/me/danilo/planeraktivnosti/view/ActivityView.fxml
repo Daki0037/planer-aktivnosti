@@ -1,45 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.danilo.planeraktivnosti.controllers.ActivityView">
-   <children>
-      <BorderPane prefHeight="640.0" prefWidth="1080.0">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../css/ActivityView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.danilo.planeraktivnosti.controllers.ActivityView">
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <VBox fx:id="activitiesPane" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #D2D4DA;" BorderPane.alignment="CENTER" />
+         </center>
          <left>
-            <VBox prefHeight="640.0" prefWidth="300.0" style="-fx-background-color: #333;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="708.0" prefWidth="294.0" style="-fx-background-color: #777986;" BorderPane.alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" onAction="#onAddActivity" prefHeight="25.0" prefWidth="99.0" text="Dodajte aktivnost">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#onLogout" text="Odjavite se" />
+                  <Button layoutX="7.0" layoutY="100.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="281.0" text="Mali prioritet" />
+                  <Button layoutX="7.0" layoutY="159.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="281.0" text="Srednji prioritet" />
+                  <Button layoutX="7.0" layoutY="216.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="281.0" text="Visoki prioritet" />
+                  <Button layoutX="7.0" layoutY="44.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="281.0" text="Svi prioriteti" />
+                  <Label layoutX="11.0" layoutY="11.0" prefHeight="26.0" prefWidth="207.0" style="-fx-text-fill: aliceblue;" text="Filtriraj po prioritetima:" />
+                  <Label layoutX="21.0" layoutY="658.0" prefHeight="36.0" prefWidth="254.0" text="Korisnik:" />
                </children>
-            </VBox>
+            </Pane>
          </left>
-         <right>
-            <VBox prefHeight="640.0" prefWidth="782.0" BorderPane.alignment="CENTER">
-               <children>
-                  <BorderPane prefHeight="99.0" prefWidth="782.0">
-                     <center>
-                        <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                           <children>
-                              <TextField layoutX="89.0" layoutY="37.0" prefHeight="25.0" prefWidth="329.0" />
-                              <ChoiceBox layoutX="470.0" layoutY="37.0" prefWidth="150.0" />
-                           </children>
-                        </Pane>
-                     </center>
-                  </BorderPane>
-                  <VBox fx:id="activitiesPane" prefHeight="548.0" prefWidth="782.0" />
-               </children></VBox>
-         </right>
       </BorderPane>
-   </children>
-</AnchorPane>
+   </center>
+   <top>
+      <Pane prefHeight="60.0" prefWidth="1024.0" style="-fx-background-color: #404252;" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="30.0" layoutY="12.0" mnemonicParsing="false" onAction="#onAddActivity" prefHeight="36.0" prefWidth="107.0" text="Dodaj aktivnost" />
+            <Button layoutX="878.0" layoutY="12.0" mnemonicParsing="false" onAction="#onLogout" prefHeight="36.0" prefWidth="107.0" text="Odjavi se" />
+            <TextField layoutX="365.0" layoutY="14.0" prefHeight="32.0" prefWidth="469.0" promptText="Pretražite aktivnosti" />
+         </children>
+      </Pane>
+   </top>
+</BorderPane>

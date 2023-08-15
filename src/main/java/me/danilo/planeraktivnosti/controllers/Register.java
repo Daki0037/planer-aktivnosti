@@ -29,8 +29,6 @@ public class Register {
         if(!isUsernameValid(username))
             return;
 
-
-
     }
 
     public void registerUser(String username, String password) {

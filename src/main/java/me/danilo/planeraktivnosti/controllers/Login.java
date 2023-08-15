@@ -37,7 +37,7 @@ public class Login {
 
         String hashedPassword = getHashedPassword(password);
 
-        authenticateUser(username, hashedPassword);
+//        authenticateUser(username, hashedPassword);
 
         User user = User.getInstance();
         user.setId(1);

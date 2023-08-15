@@ -1,0 +1,20 @@
+.activity-pane {
+    -fx-background-color: #333;
+    -fx-padding: 20px 0px 20px 0px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+}
+
+.activity-pane * {
+    -fx-text-fill: white;
+}
+
+.activity-id {
+    -fx-padding: 0px 10px 0px 10px;
+    -fx-background-insets: 10px;
+    -fx-background-color: #8c8c8c;
+}
+
+.activity-name {
+
+}
