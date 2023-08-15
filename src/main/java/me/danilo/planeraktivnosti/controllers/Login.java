@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import me.danilo.planeraktivnosti.models.User;
+import me.danilo.planeraktivnosti.utils.AuthService;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -17,6 +18,7 @@ import java.security.NoSuchAlgorithmException;
 public class Login {
 
     ScreenController screenController = ScreenController.getInstance();
+    AuthService authService = AuthService.getInstance();
 
     @FXML
     private TextField usernameField;
@@ -32,57 +34,17 @@ public class Login {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        if(!isUsernameValid(username))
+        if(!authService.isUsernameValid(username))
             return;
 
-        String hashedPassword = getHashedPassword(password);
+        password = authService.getHashedPassword(password);
 
-//        authenticateUser(username, hashedPassword);
+        authService.authenticateUser(username, password);
 
         User user = User.getInstance();
         user.setId(1);
         user.setUsername("Petar");
         screenController.changeScreen("main");
-    }
-
-    public boolean isUsernameValid(String username) {
-        if(username.isBlank())
-            return false;
-        return true;
-    }
-
-    public String getHashedPassword(String password) throws NoSuchAlgorithmException {
-        String hashedPassword = "";
-
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(password.getBytes());
-        byte[] bytes = md.digest();
-
-        hashedPassword = javax.xml.bind.DatatypeConverter.printHexBinary(bytes);
-
-        return hashedPassword;
-    }
-
-    public void authenticateUser(String username, String password) {
-        try {
-            URL url = new URL("http://localhost:8080/api/auth/login");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setDoOutput(true);
-
-            String jsonInput = "{\"username\": \"" + username + "\", \"password\": \"" + password + "\"}";
-            try (OutputStream os = connection.getOutputStream()) {
-                byte[] inputBytes = jsonInput.getBytes("utf-8");
-                os.write(inputBytes, 0, inputBytes.length);
-            }
-
-            int responseCode = connection.getResponseCode();
-
-            connection.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 
