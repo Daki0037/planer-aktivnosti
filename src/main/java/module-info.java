@@ -1,7 +1,9 @@
 module me.danilo.planeraktivnosti {
     requires javafx.controls;
     requires javafx.fxml;
-    requires java.xml.bind;
+    requires httpclient;
+    requires httpcore;
+    requires org.json;
 
 
     opens me.danilo.planeraktivnosti to javafx.fxml;

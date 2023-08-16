@@ -34,17 +34,10 @@ public class Login {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
-        if(!authService.isUsernameValid(username))
-            return;
-
-        password = authService.getHashedPassword(password);
-
         authService.authenticateUser(username, password);
 
-        User user = User.getInstance();
-        user.setId(1);
-        user.setUsername("Petar");
-        screenController.changeScreen("main");
+
+//        screenController.changeScreen("main");
     }
 
 

@@ -33,7 +33,14 @@ public class Register {
         if(!authService.isUsernameValid(username))
             return;
 
-        password = authService.getHashedPassword(password);
+        if(!authService.isPasswordValid(password))
+            return;
+
+        usernameField.setText("");
+        passwordField.setText("");
+
+        if(!authService.isUsernameValid(username))
+            return;
 
         authService.registerUser(username, password);
     }
