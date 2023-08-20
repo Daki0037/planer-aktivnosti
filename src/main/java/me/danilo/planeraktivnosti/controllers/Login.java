@@ -19,6 +19,7 @@ public class Login {
 
     ScreenController screenController = ScreenController.getInstance();
     AuthService authService = AuthService.getInstance();
+    User user = User.getInstance();
 
     @FXML
     private TextField usernameField;
@@ -34,10 +35,9 @@ public class Login {
         String username = usernameField.getText();
         String password = passwordField.getText();
 
+        user.setUsername(username);
+
         authService.authenticateUser(username, password);
-
-
-//        screenController.changeScreen("main");
     }
 
 

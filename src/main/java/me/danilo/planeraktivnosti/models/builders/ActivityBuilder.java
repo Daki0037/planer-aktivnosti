@@ -3,6 +3,8 @@ package me.danilo.planeraktivnosti.models.builders;
 import me.danilo.planeraktivnosti.interfaces.Builder;
 import me.danilo.planeraktivnosti.models.Activity;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 public class ActivityBuilder implements Builder {
@@ -10,8 +12,10 @@ public class ActivityBuilder implements Builder {
     private String name = "", description = "";
     private int id, priority = 2;
     private boolean completed = false;
-    private Date startDate = new Date();
-    private Date endDate = new Date();
+    private LocalDate currentDate = LocalDate.now();
+    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private String startDate = LocalDate.now().format(formatter);
+    private String endDate = LocalDate.now().format(formatter);
 
     @Override
     public ActivityBuilder setId(int id) {
@@ -44,13 +48,13 @@ public class ActivityBuilder implements Builder {
     }
 
     @Override
-    public ActivityBuilder setStartDate(Date startDate) {
+    public ActivityBuilder setStartDate(String startDate) {
         this.startDate = startDate;
         return this;
     }
 
     @Override
-    public ActivityBuilder setEndDate(Date endDate) {
+    public ActivityBuilder setEndDate(String endDate) {
         this.endDate = endDate;
         return this;
     }

@@ -2,6 +2,7 @@ package me.danilo.planeraktivnosti.interfaces;
 
 import me.danilo.planeraktivnosti.models.builders.ActivityBuilder;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public interface Builder {
@@ -11,8 +12,8 @@ public interface Builder {
     ActivityBuilder setDescription(String description);
     ActivityBuilder setPriority(int priority);
     ActivityBuilder setCompleted(boolean completed);
-    ActivityBuilder setStartDate(Date startDate);
-    ActivityBuilder setEndDate(Date endDate);
+    ActivityBuilder setStartDate(String startDate);
+    ActivityBuilder setEndDate(String endDate);
 
 
 }

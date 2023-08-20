@@ -1,23 +1,29 @@
 package me.danilo.planeraktivnosti.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import me.danilo.planeraktivnosti.interfaces.Observer;
 import me.danilo.planeraktivnosti.models.Activity;
 import me.danilo.planeraktivnosti.models.User;
 import me.danilo.planeraktivnosti.models.builders.ActivityBuilder;
+import me.danilo.planeraktivnosti.models.observers.UsernameObserver;
 
-import java.util.Date;
+import java.text.SimpleDateFormat;
 
 
-public class ActivityView {
+public class ActivityView implements Observer {
 
     private ScreenController screenController = ScreenController.getInstance();
 
     private ActivityBuilder builder = new ActivityBuilder();
+    private User user = User.getInstance();
+    @FXML
+    private Label userLabel;
+
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
     @FXML
     private VBox activitiesPane;
@@ -26,38 +32,74 @@ public class ActivityView {
         screenController.changeScreen("add");
     }
 
+    @FXML
+    public void initialize() {
+        UsernameObserver usernameObserver = UsernameObserver.getInstance();
+        usernameObserver.addListener(this);
+    }
+
     public void onLogout() {
         User user = null;
         screenController.changeScreen("login");
-        
-        Activity activity = builder.setId(1)
-                .setName("Ovo je neki test naslov")
-                .setDescription("Ovo je neka deskripcija za ovu aktivnost")
-                .setPriority(1).build();
-        addDynamicPane(activity);
+        clearActivityList();
+    }
+
+    public void onAllPriorities() {
+
+    }
+
+    public void onLowPriority() {
+
+    }
+
+    public void onMediumPriority() {
+
+    }
+
+    public void onHighPriority() {
+
     }
 
     private void addDynamicPane(Activity activity) {
-        HBox activityComponent = createDynamicPane(activity);
+        VBox activityComponent = createDynamicPane(activity);
         activityComponent.getStyleClass().add("activity-pane");
 
         activitiesPane.getChildren().add(activityComponent);
     }
 
-    private HBox createDynamicPane(Activity activity) {
-        HBox pane = new HBox();
+    private VBox createDynamicPane(Activity activity) {
+        VBox pane = new VBox();
+        HBox paneHBox = new HBox();
 
         Label idLabel = new Label(Integer.toString(activity.getId()));
         idLabel.getStyleClass().add("activity-id");
         Label titleLabel = new Label(activity.getName());
         titleLabel.getStyleClass().add("activity-name");
-        Label descriptionLabel = new Label(activity.getDescription());
-        Label priorityLabel = new Label(Integer.toString(activity.getPriority()));
-        Label startDateLabel = new Label(activity.getStartDate().toString());
 
-        pane.getChildren().addAll(idLabel, titleLabel, descriptionLabel, priorityLabel, startDateLabel);
+        Button editActivity = new Button("Izmeni");
+        Button deleteActivity = new Button("Izbriši");
+
+        paneHBox.getChildren().addAll(idLabel, titleLabel, editActivity, deleteActivity);
+
+        HBox secondHBox = new HBox();
+        Label startDateLabel = new Label(dateFormat.format(activity.getStartDate()));
+        Label priorityLabel = new Label(Integer.toString(activity.getPriority()));
+        secondHBox.getChildren().addAll(startDateLabel, priorityLabel);
+
+
+        Label descriptionLabel = new Label(activity.getDescription());
+
+        pane.getChildren().addAll(paneHBox, secondHBox, descriptionLabel);
 
         return pane;
+    }
+
+    public void clearActivityList() {
+        activitiesPane.getChildren().clear();
+    }
+
+    public void update() {
+        userLabel.setText("Korisnik: " + user.getUsername());
     }
 
 }

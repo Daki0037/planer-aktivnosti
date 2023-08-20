@@ -1,5 +1,6 @@
 package me.danilo.planeraktivnosti.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Activity {
@@ -7,9 +8,11 @@ public class Activity {
     private String name, description;
     private int id, priority;
     private boolean completed;
+    private int UserId;
+    private User user = User.getInstance();
 
-    private Date startDate, endDate;
-    public Activity(int id, String name, String description, int priority, boolean completed, Date startDate, Date endDate) {
+    private String startDate, endDate;
+    public Activity(int id, String name, String description, int priority, boolean completed, String startDate, String endDate) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -17,6 +20,7 @@ public class Activity {
         this.completed = completed;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.UserId = user.getId();
     }
 
     public int getId() {
@@ -43,11 +47,15 @@ public class Activity {
         return completed;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public Date getEndDate() {
+    public String getEndDate() {
         return endDate;
+    }
+
+    public int getUserId() {
+        return UserId;
     }
 }

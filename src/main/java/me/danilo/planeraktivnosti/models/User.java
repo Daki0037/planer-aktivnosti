@@ -32,4 +32,9 @@ public class User {
         return username;
     }
 
+    public void clearUser() {
+        this.id = 0;
+        this.username = "";
+    }
+
 }

@@ -1,11 +1,13 @@
 package me.danilo.planeraktivnosti.utils;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import me.danilo.planeraktivnosti.controllers.ScreenController;
+import me.danilo.planeraktivnosti.models.User;
+import me.danilo.planeraktivnosti.models.observers.UsernameObserver;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -18,6 +20,10 @@ import org.json.*;
 public class AuthService {
 
     private static AuthService instance;
+    private User user = User.getInstance();
+    private ScreenController screenController = ScreenController.getInstance();
+    String error = "";
+    private UsernameObserver usernameObserver = UsernameObserver.getInstance();
 
     private AuthService() {}
 
@@ -54,27 +60,7 @@ public class AuthService {
             StringEntity entity = new StringEntity(jsonInput);
             httpPost.setEntity(entity);
 
-            HttpEntity responseEntity = null;
-
-            try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
-                responseEntity = response.getEntity();
-
-                if (responseEntity != null) {
-                    String responseContent = EntityUtils.toString(responseEntity, "UTF-8");
-                    JSONObject jsonResponse = new JSONObject(responseContent.trim());
-                    System.out.println(jsonResponse);
-
-                    String isAuthenticated = jsonResponse.getString("autentificated");
-                    if (isAuthenticated.equalsIgnoreCase("true")) {
-                        String userId = jsonResponse.getString("id");
-                        System.out.println("Authentication successful. User ID: " + userId);
-                    } else {
-                        System.out.println("Authentication failed.");
-                    }
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            readResponse(httpClient, httpPost);
 
             httpClient.close();
         } catch (Exception e) {
@@ -96,14 +82,46 @@ public class AuthService {
                 os.write(inputBytes, 0, inputBytes.length);
             }
 
-            if(connection.getResponseCode() == 400) {
-                System.out.println("Username already exists!");
-            }
+            if(connection.getResponseCode() == 400)
+                error = "Username already exists.";
 
             connection.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void readResponse(CloseableHttpClient httpClient, HttpPost httpPost) throws IOException {
+
+        CloseableHttpResponse response = httpClient.execute(httpPost);
+        HttpEntity responseEntity = response.getEntity();
+
+        if(responseEntity == null)
+            return;
+
+        String responseContent = EntityUtils.toString(responseEntity, "UTF-8");
+        JSONObject jsonResponse = new JSONObject(responseContent.trim());
+
+        String isAuthenticated = jsonResponse.getString("authenticated");
+
+        if (isAuthenticated.equalsIgnoreCase("false")) {
+            user.clearUser();
+            error = "The username or password is incorrect.";
+            return;
+        }
+
+        successfulAuthentication(jsonResponse);
+    }
+
+    public void successfulAuthentication(JSONObject jsonResponse) {
+        String userId = jsonResponse.getString("id");
+        user.setId(Integer.parseInt(userId));
+        setUsernameInActivityView();
+        screenController.changeScreen("main");
+    }
+
+    public void setUsernameInActivityView() {
+        usernameObserver.updateUsernameLabel();
     }
 
 }

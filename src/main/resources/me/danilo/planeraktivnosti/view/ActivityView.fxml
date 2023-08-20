@@ -16,12 +16,12 @@
          <left>
             <Pane prefHeight="708.0" prefWidth="294.0" style="-fx-background-color: #777986;" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="7.0" layoutY="100.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="281.0" text="Mali prioritet" />
-                  <Button layoutX="7.0" layoutY="159.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="281.0" text="Srednji prioritet" />
-                  <Button layoutX="7.0" layoutY="216.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="281.0" text="Visoki prioritet" />
-                  <Button layoutX="7.0" layoutY="44.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="281.0" text="Svi prioriteti" />
+                  <Button layoutX="7.0" layoutY="100.0" mnemonicParsing="false" onAction="#onLowPriority" prefHeight="36.0" prefWidth="281.0" text="Mali prioritet" />
+                  <Button layoutX="7.0" layoutY="159.0" mnemonicParsing="false" onAction="#onMediumPriority" prefHeight="36.0" prefWidth="281.0" text="Srednji prioritet" />
+                  <Button layoutX="7.0" layoutY="216.0" mnemonicParsing="false" onAction="#onHighPriority" prefHeight="36.0" prefWidth="281.0" text="Visoki prioritet" />
+                  <Button layoutX="7.0" layoutY="44.0" mnemonicParsing="false" onAction="#onAllPriorities" prefHeight="36.0" prefWidth="281.0" text="Svi prioriteti" />
                   <Label layoutX="11.0" layoutY="11.0" prefHeight="26.0" prefWidth="207.0" style="-fx-text-fill: aliceblue;" text="Filtriraj po prioritetima:" />
-                  <Label layoutX="21.0" layoutY="658.0" prefHeight="36.0" prefWidth="254.0" text="Korisnik:" />
+                  <Label fx:id="userLabel" layoutX="21.0" layoutY="658.0" prefHeight="36.0" prefWidth="254.0" text="Korisnik:" />
                </children>
             </Pane>
          </left>

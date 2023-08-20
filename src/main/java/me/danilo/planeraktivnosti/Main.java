@@ -1,27 +1,29 @@
 package me.danilo.planeraktivnosti;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import me.danilo.planeraktivnosti.controllers.ScreenController;
+import me.danilo.planeraktivnosti.models.observers.UsernameObserver;
 
 import java.io.IOException;
 
 public class Main extends Application  {
 
     ScreenController screenController = ScreenController.getInstance();
+    UsernameObserver usernameObserver = UsernameObserver.getInstance();
 
     public void initializeScreens() throws IOException {
         screenController.addScreen("login", FXMLLoader.load(getClass().getResource("/me/danilo/planeraktivnosti/view/Login.fxml")));
         screenController.addScreen("register", FXMLLoader.load(getClass().getResource("/me/danilo/planeraktivnosti/view/Register.fxml")));
         screenController.addScreen("main", FXMLLoader.load(getClass().getResource("/me/danilo/planeraktivnosti/view/ActivityView.fxml")));
         screenController.addScreen("add", FXMLLoader.load(getClass().getResource("/me/danilo/planeraktivnosti/view/NewActivity.fxml")));
+    }
+
+    public void addListeners() throws IOException {
+
     }
 
     @Override
@@ -31,6 +33,7 @@ public class Main extends Application  {
         Scene scene = new Scene(root, 1024, 768);
         screenController.setScene(scene);
         initializeScreens();
+        addListeners();
 
         stage.setScene(scene);
         stage.setResizable(false);
