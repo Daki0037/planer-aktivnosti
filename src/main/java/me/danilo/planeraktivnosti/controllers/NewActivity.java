@@ -2,8 +2,10 @@ package me.danilo.planeraktivnosti.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import me.danilo.planeraktivnosti.interfaces.Observer;
 import me.danilo.planeraktivnosti.models.Activity;
 import me.danilo.planeraktivnosti.models.builders.ActivityBuilder;
+import me.danilo.planeraktivnosti.models.observers.FetchObserver;
 import me.danilo.planeraktivnosti.utils.ActivityService;
 
 import java.io.IOException;
@@ -11,7 +13,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class NewActivity extends ActivityList {
+public class NewActivity {
 
     private ScreenController screenController = ScreenController.getInstance();
 
@@ -39,9 +41,11 @@ public class NewActivity extends ActivityList {
 
     private ActivityBuilder builder = new ActivityBuilder();
     private ActivityService activityService = new ActivityService();
+    private FetchObserver observer = FetchObserver.getInstance();
 
     public void onAddActivity() throws IOException {
         getValues();
+        observer.update();
         screenController.changeScreen("main");
     }
 

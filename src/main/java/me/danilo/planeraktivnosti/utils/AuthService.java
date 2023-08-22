@@ -7,7 +7,7 @@ import java.net.URL;
 
 import me.danilo.planeraktivnosti.controllers.ScreenController;
 import me.danilo.planeraktivnosti.models.User;
-import me.danilo.planeraktivnosti.models.observers.UsernameObserver;
+import me.danilo.planeraktivnosti.models.observers.FetchObserver;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -23,7 +23,7 @@ public class AuthService {
     private User user = User.getInstance();
     private ScreenController screenController = ScreenController.getInstance();
     String error = "";
-    private UsernameObserver usernameObserver = UsernameObserver.getInstance();
+    private FetchObserver fetchObserver = FetchObserver.getInstance();
 
     private AuthService() {}
 
@@ -121,7 +121,7 @@ public class AuthService {
     }
 
     public void setUsernameInActivityView() {
-        usernameObserver.updateUsernameLabel();
+        fetchObserver.update();
     }
 
 }

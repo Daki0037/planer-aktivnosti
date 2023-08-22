@@ -31,8 +31,16 @@ public class Activity {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getPriority() {
@@ -47,15 +55,28 @@ public class Activity {
         return completed;
     }
 
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
     public String getStartDate() {
         return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
     public String getEndDate() {
         return endDate;
     }
 
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
     public int getUserId() {
         return UserId;
+
     }
 }
