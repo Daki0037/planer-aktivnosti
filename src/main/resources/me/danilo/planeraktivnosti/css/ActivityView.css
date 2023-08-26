@@ -1,18 +1,65 @@
-.activity-pane {
-    -fx-background-color: #333;
-    -fx-padding: 20px 0px 20px 0px;
-    -fx-border-insets: 5px;
-    -fx-background-insets: 5px;
+.activity-main-panel {
+    -fx-padding: 5px 10px 10px 5px;
+}
+
+.activity-first-panel {
+    -fx-background-color: #404252;
+    -fx-padding: 10px 0px 10px 0px;
+    -fx-background-radius: 10px 10px 0px 0px;
+}
+
+.activityButtons {
+    -fx-background-color: #777986;
+    -fx-text-fill: #d2d4da;
+    -fx-font-weight: 600;
+    -fx-padding: 0px 5px 0px 5px;
+}
+
+.activity-second-panel {
+    -fx-background-color: #555870;
+    -fx-padding: 10px 0px 10px 0px;
+}
+
+.activity-third-panel {
+    -fx-background-color: #70728a;
+    -fx-padding: 10px 0px 10px 0px;
+    -fx-text-fill: #d2d4da;
+    -fx-background-radius: 0px 0px 10px 10px;
 }
 
 .activity-pane * {
-    -fx-text-fill: white;
+    -fx-text-fill: #d2d4da;
 }
 
 .activity-id {
     -fx-padding: 0px 10px 0px 10px;
     -fx-background-insets: 10px;
-    -fx-background-color: #8c8c8c;
+    -fx-background-color: #333;
+}
+
+#activityTopBar {
+    -fx-background-color: #404252;
+}
+
+.activityBackground {
+    -fx-background-color: #d2d4da;
+}
+
+.textLabel {
+    -fx-text-fill: #d2d4da;
+}
+
+.filterButton {
+    -fx-background-color: #404252;
+    -fx-text-fill: #d2d4da;
+    -fx-font-weight: 600;
+}
+
+.lighterButton {
+    -fx-background-color: #777986;
+    -fx-text-fill: #d2d4da;
+    -fx-border-color: aliceblue;
+    -fx-border-radius: 5px;
 }
 
 .activity-name {

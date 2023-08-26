@@ -49,8 +49,10 @@ public class EditActivity implements Observer {
 
     public void onSaveButton() throws IOException {
 
-        if(!isValidActivity())
+        if(!isValidActivity()) {
+            System.out.println("Nije validna");
             return;
+        }
 
         activity.setName(title.getText());
         activity.setDescription(description.getText());
@@ -67,8 +69,8 @@ public class EditActivity implements Observer {
         activity.setEndDate(endDateText);
 
         activityService.saveActivity(activity);
-
         observer.update();
+        screenController.changeScreen("main");
     }
 
     @Override
@@ -83,6 +85,14 @@ public class EditActivity implements Observer {
         description.setText(activity.getDescription());
         completed.setSelected(activity.isCompleted());
         selectPriority(activity);
+
+        String start = activityService.convertDate(activity.getStartDate());
+        String end = activityService.convertDate(activity.getEndDate());
+        LocalDate startLocalDate = LocalDate.parse(start);
+        LocalDate endLocalDate = LocalDate.parse(end);
+
+        startDate.setValue(startLocalDate);
+        endDate.setValue(endLocalDate);
     }
 
     public void selectPriority(Activity activity) {

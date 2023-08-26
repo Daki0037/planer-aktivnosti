@@ -1,6 +1,7 @@
 package me.danilo.planeraktivnosti.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import me.danilo.planeraktivnosti.utils.AuthService;
@@ -18,6 +19,8 @@ public class Register {
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private Label errorLabel;
 
     ScreenController screenController = ScreenController.getInstance();
     AuthService authService = AuthService.getInstance();
@@ -43,6 +46,7 @@ public class Register {
             return;
 
         authService.registerUser(username, password);
+        errorLabel.setText(errorLabel.getText());
     }
 
 

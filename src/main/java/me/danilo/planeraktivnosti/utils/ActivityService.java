@@ -4,6 +4,7 @@ import me.danilo.planeraktivnosti.controllers.ActivityList;
 import me.danilo.planeraktivnosti.models.Activity;
 import me.danilo.planeraktivnosti.models.User;
 import me.danilo.planeraktivnosti.models.builders.ActivityBuilder;
+import me.danilo.planeraktivnosti.models.observers.FetchObserver;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -17,6 +18,9 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ActivityService extends ActivityList {
 
@@ -24,23 +28,29 @@ public class ActivityService extends ActivityList {
     private ActivityBuilder builder = new ActivityBuilder();
 
     public void addActivity(Activity activity) throws IOException {
-            CloseableHttpClient httpClient = HttpClients.createDefault();
-            String url = "http://localhost:8080/api/activity/add";
+        JSONObject jsonInput = new JSONObject();
+        addToJson(activity, jsonInput);
 
-            HttpPost httpPost = new HttpPost(url);
+        sendData(jsonInput, "http://localhost:8080/api/activity/add");
+    }
 
-            httpPost.setHeader("Content-Type", "application/json");
-            JSONObject jsonInput = new JSONObject();
-            addToJson(activity, jsonInput);
-            StringEntity entity = new StringEntity(jsonInput.toString());
-            httpPost.setEntity(entity);
+    public void saveActivity(Activity activity) throws IOException {
+        JSONObject jsonInput = new JSONObject();
+        jsonInput.put("id", activity.getId());
+        addToJson(activity, jsonInput);
 
-            CloseableHttpResponse response = httpClient.execute(httpPost);
-            HttpEntity responseEntity = response.getEntity();
+        sendData(jsonInput, "http://localhost:8080/api/activity/add");
+    }
 
-            String responseContent = EntityUtils.toString(responseEntity, "UTF-8");
+    public void deleteActivity(Activity activity) throws IOException {
+        JSONObject jsonInput = new JSONObject();
+        jsonInput.put("id", activity.getId());
+        addToJson(activity, jsonInput);
 
-            httpClient.close();
+        sendData(jsonInput, "http://localhost:8080/api/activity/delete");
+        this.getActivityList().remove(activity);
+
+        fetchActivityData();
     }
 
     public void addToJson(Activity activity, JSONObject jsonInput) {
@@ -111,16 +121,12 @@ public class ActivityService extends ActivityList {
         }
     }
 
-    public void saveActivity(Activity activity) throws IOException {
+    public void sendData(JSONObject jsonInput, String url) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        String url = "http://localhost:8080/api/update";
 
         HttpPost httpPost = new HttpPost(url);
 
         httpPost.setHeader("Content-Type", "application/json");
-        JSONObject jsonInput = new JSONObject();
-        jsonInput.put("id", activity.getId());
-        addToJson(activity, jsonInput);
         StringEntity entity = new StringEntity(jsonInput.toString());
         httpPost.setEntity(entity);
 
@@ -130,6 +136,23 @@ public class ActivityService extends ActivityList {
         String responseContent = EntityUtils.toString(responseEntity, "UTF-8");
 
         httpClient.close();
+    }
+
+    public String convertDate(String inputDate) {
+        try {
+            SimpleDateFormat inputDateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+            Date date = inputDateFormat.parse(inputDate);
+
+            SimpleDateFormat outputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            String formattedDate = outputDateFormat.format(date);
+
+            return formattedDate;
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return "Invalid input date format. Please use 'dd/MM/yyyy'.";
+        }
     }
 
 }

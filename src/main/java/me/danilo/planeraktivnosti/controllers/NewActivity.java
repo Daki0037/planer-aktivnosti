@@ -43,6 +43,12 @@ public class NewActivity {
     private ActivityService activityService = new ActivityService();
     private FetchObserver observer = FetchObserver.getInstance();
 
+    @FXML
+    public void initialize() {
+        startDate.setValue(LocalDate.now());
+        endDate.setValue(LocalDate.now());
+    }
+
     public void onAddActivity() throws IOException {
         getValues();
         observer.update();

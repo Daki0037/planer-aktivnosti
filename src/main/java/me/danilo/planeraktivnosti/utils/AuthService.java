@@ -50,6 +50,8 @@ public class AuthService {
 
     public void authenticateUser(String username, String password) {
         try {
+            error = "";
+
             CloseableHttpClient httpClient = HttpClients.createDefault();
             String apiUrl = "http://localhost:8080/api/auth/login";
 
@@ -70,6 +72,8 @@ public class AuthService {
 
     public void registerUser(String username, String password) {
         try {
+            error = "";
+
             URL url = new URL("http://localhost:8080/api/auth/register");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
@@ -83,7 +87,7 @@ public class AuthService {
             }
 
             if(connection.getResponseCode() == 400)
-                error = "Username already exists.";
+                error = "Korisničko ime je zauzeto.";
 
             connection.disconnect();
         } catch (Exception e) {
@@ -106,7 +110,7 @@ public class AuthService {
 
         if (isAuthenticated.equalsIgnoreCase("false")) {
             user.clearUser();
-            error = "The username or password is incorrect.";
+            error = "Korisničko ime ili šifra nije tačna.";
             return;
         }
 
@@ -124,4 +128,7 @@ public class AuthService {
         fetchObserver.update();
     }
 
+    public String getError() {
+        return error;
+    }
 }

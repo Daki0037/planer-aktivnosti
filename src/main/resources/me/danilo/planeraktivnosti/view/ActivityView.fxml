@@ -6,33 +6,52 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../css/ActivityView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.danilo.planeraktivnosti.controllers.ActivityView">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
-            <VBox fx:id="activitiesPane" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #D2D4DA;" BorderPane.alignment="CENTER" />
+            <VBox fx:id="activitiesPane" prefHeight="200.0" prefWidth="100.0" styleClass="activityBackground" BorderPane.alignment="CENTER" />
          </center>
          <left>
-            <Pane prefHeight="708.0" prefWidth="294.0" style="-fx-background-color: #777986;" BorderPane.alignment="CENTER">
+            <Pane prefHeight="708.0" prefWidth="294.0" style="-fx-background-color: #5b5d6b;" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="7.0" layoutY="100.0" mnemonicParsing="false" onAction="#onLowPriority" prefHeight="36.0" prefWidth="281.0" text="Mali prioritet" />
-                  <Button layoutX="7.0" layoutY="159.0" mnemonicParsing="false" onAction="#onMediumPriority" prefHeight="36.0" prefWidth="281.0" text="Srednji prioritet" />
-                  <Button layoutX="7.0" layoutY="216.0" mnemonicParsing="false" onAction="#onHighPriority" prefHeight="36.0" prefWidth="281.0" text="Visoki prioritet" />
-                  <Button layoutX="7.0" layoutY="44.0" mnemonicParsing="false" onAction="#onAllPriorities" prefHeight="36.0" prefWidth="281.0" text="Svi prioriteti" />
-                  <Label layoutX="11.0" layoutY="11.0" prefHeight="26.0" prefWidth="207.0" style="-fx-text-fill: aliceblue;" text="Filtriraj po prioritetima:" />
-                  <Label fx:id="userLabel" layoutX="21.0" layoutY="658.0" prefHeight="36.0" prefWidth="254.0" text="Korisnik:" />
+                  <Button fx:id="low" layoutX="7.0" layoutY="100.0" mnemonicParsing="false" onAction="#onLowPriority" prefHeight="36.0" prefWidth="281.0" styleClass="filterButton" text="Mali prioritet">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="medium" layoutX="7.0" layoutY="159.0" mnemonicParsing="false" onAction="#onMediumPriority" prefHeight="36.0" prefWidth="281.0" styleClass="filterButton" text="Srednji prioritet">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button fx:id="high" layoutX="7.0" layoutY="216.0" mnemonicParsing="false" onAction="#onHighPriority" prefHeight="36.0" prefWidth="281.0" styleClass="filterButton" text="Visoki prioritet">
+                     <font>
+                        <Font name="Segoe UI Light" size="14.0" />
+                     </font></Button>
+                  <Button fx:id="all" layoutX="7.0" layoutY="44.0" mnemonicParsing="false" onAction="#onAllPriorities" prefHeight="36.0" prefWidth="281.0" style="-fx-border-color: aliceblue;" styleClass="filterButton" text="Svi prioriteti">
+                     <font>
+                        <Font name="Segoe UI" size="14.0" />
+                     </font></Button>
+                  <Label layoutX="13.0" layoutY="8.0" prefHeight="26.0" prefWidth="207.0" styleClass="textLabel" text="Filtriraj po prioritetima:">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <Label fx:id="userLabel" layoutX="21.0" layoutY="658.0" prefHeight="36.0" prefWidth="254.0" styleClass="textLabel" text="Korisnik:">
+                     <font>
+                        <Font size="22.0" />
+                     </font></Label>
                </children>
             </Pane>
          </left>
       </BorderPane>
    </center>
    <top>
-      <Pane prefHeight="60.0" prefWidth="1024.0" style="-fx-background-color: #404252;" BorderPane.alignment="CENTER">
+      <Pane id="activityTopBar" prefHeight="60.0" prefWidth="1024.0" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="30.0" layoutY="12.0" mnemonicParsing="false" onAction="#onAddActivity" prefHeight="36.0" prefWidth="107.0" text="Dodaj aktivnost" />
-            <Button layoutX="878.0" layoutY="12.0" mnemonicParsing="false" onAction="#onLogout" prefHeight="36.0" prefWidth="107.0" text="Odjavi se" />
-            <TextField fx:id="searchBar" layoutX="365.0" layoutY="14.0" prefHeight="32.0" prefWidth="469.0" promptText="Pretražite aktivnosti" />
+            <Button layoutX="30.0" layoutY="12.0" mnemonicParsing="false" onAction="#onAddActivity" prefHeight="36.0" prefWidth="153.0" styleClass="lighterButton" text="Dodaj aktivnost" />
+            <Button layoutX="852.0" layoutY="12.0" mnemonicParsing="false" onAction="#onLogout" prefHeight="36.0" prefWidth="133.0" styleClass="lighterButton" text="Odjavi se" />
+            <TextField fx:id="searchBar" layoutX="350.0" layoutY="14.0" prefHeight="32.0" prefWidth="469.0" promptText="Pretražite aktivnosti" />
          </children>
       </Pane>
    </top>

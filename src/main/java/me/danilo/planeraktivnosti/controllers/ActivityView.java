@@ -8,6 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import me.danilo.planeraktivnosti.interfaces.Observer;
@@ -18,6 +20,7 @@ import me.danilo.planeraktivnosti.models.observers.EditObserver;
 import me.danilo.planeraktivnosti.models.observers.FetchObserver;
 import me.danilo.planeraktivnosti.utils.ActivityService;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 
@@ -34,6 +37,14 @@ public class ActivityView extends ActivityList implements Observer {
     private Label userLabel;
     @FXML
     private TextField searchBar;
+    @FXML
+    private Button all;
+    @FXML
+    private Button low;
+    @FXML
+    private Button medium;
+    @FXML
+    private Button high;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -65,6 +76,8 @@ public class ActivityView extends ActivityList implements Observer {
 
     public void onAllPriorities() {
         priorityFilter = 0;
+        clearAllSelections();
+        all.setStyle("-fx-border-color: aliceblue");
         clearActivityList();
         for(Activity activity : this.getActivityList()) {
             addDynamicPane(activity);
@@ -73,16 +86,22 @@ public class ActivityView extends ActivityList implements Observer {
 
     public void onLowPriority() {
         priorityFilter = 1;
+        clearAllSelections();
+        low.setStyle("-fx-border-color: aliceblue");
         setActivitiesWithPriority(1);
     }
 
     public void onMediumPriority() {
         priorityFilter = 2;
+        clearAllSelections();
+        medium.setStyle("-fx-border-color: aliceblue");
         setActivitiesWithPriority(2);
     }
 
     public void onHighPriority() {
         priorityFilter = 3;
+        clearAllSelections();
+        high.setStyle("-fx-border-color: aliceblue");
         setActivitiesWithPriority(3);
     }
 
@@ -103,14 +122,21 @@ public class ActivityView extends ActivityList implements Observer {
 
     private VBox createDynamicPane(Activity activity) {
         VBox pane = new VBox();
+        pane.getStyleClass().add("activity-main-panel");
+
         HBox paneHBox = new HBox();
+        paneHBox.getStyleClass().add("activity-first-panel");
 
         Label idLabel = new Label(Integer.toString(activity.getId()));
         idLabel.getStyleClass().add("activity-id");
         Label titleLabel = new Label(activity.getName());
         titleLabel.getStyleClass().add("activity-name");
 
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
         Button editActivity = new Button("Izmeni");
+        editActivity.getStyleClass().add("activityButtons");
         editActivity.setOnAction(event -> {
             EditObserver editObserver = EditObserver.getInstance();
             editObserver.update(activity);
@@ -118,19 +144,33 @@ public class ActivityView extends ActivityList implements Observer {
         });
 
         Button deleteActivity = new Button("Izbriši");
+        deleteActivity.getStyleClass().add("activityButtons");
+        deleteActivity.setOnAction(event -> {
+            try {
+                activityService.deleteActivity(activity);
+                update();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
-        paneHBox.getChildren().addAll(idLabel, titleLabel, editActivity, deleteActivity);
+        paneHBox.getChildren().addAll(idLabel, titleLabel, spacer, editActivity, deleteActivity);
 
         HBox secondHBox = new HBox();
+        secondHBox.getStyleClass().add("activity-second-panel");
+
         Label startDateLabel = new Label(activity.getStartDate());
         Label endDateLabel = new Label(activity.getEndDate());
         Label priorityLabel = new Label(Integer.toString(activity.getPriority()));
         secondHBox.getChildren().addAll(startDateLabel, endDateLabel, priorityLabel);
 
+        HBox thirdHBox = new HBox();
+        thirdHBox.getStyleClass().add("activity-third-panel");
 
         Label descriptionLabel = new Label(activity.getDescription());
+        thirdHBox.getChildren().add(descriptionLabel);
 
-        pane.getChildren().addAll(paneHBox, secondHBox, descriptionLabel);
+        pane.getChildren().addAll(paneHBox, secondHBox, thirdHBox);
 
         return pane;
     }
@@ -170,6 +210,13 @@ public class ActivityView extends ActivityList implements Observer {
         for(Activity activity : getActivityList()) {
             addDynamicPane(activity);
         }
+    }
+
+    public void clearAllSelections() {
+        all.setStyle("-fx-border-color: none");
+        low.setStyle("-fx-border-color: none");
+        medium.setStyle("-fx-border-color: none");
+        high.setStyle("-fx-border-color: none");
     }
 
 }

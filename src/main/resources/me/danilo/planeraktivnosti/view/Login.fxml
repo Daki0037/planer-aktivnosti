@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -24,23 +26,33 @@
           <RowConstraints maxHeight="76.0" minHeight="0.0" percentHeight="20.0" prefHeight="0.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane id="formBackground" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <AnchorPane id="formBackground" prefHeight="486.0" prefWidth="614.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <TextField fx:id="usernameField" layoutX="187.0" layoutY="120.0" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: #b3b5bd;" />
-                  <PasswordField fx:id="passwordField" layoutX="187.0" layoutY="188.0" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: #b3b5bd;" />
-                  <Button layoutX="245.0" layoutY="246.0" mnemonicParsing="false" onAction="#onLoginBtn" prefHeight="25.0" prefWidth="125.0" text="Ulogujte se" />
-                  <Button layoutX="245.0" layoutY="301.0" mnemonicParsing="false" onAction="#onRegisterBtn" prefHeight="25.0" prefWidth="125.0" text="Registrujte se" />
-                  <Label fx:id="errorLabel" alignment="CENTER" layoutX="64.0" layoutY="76.0" prefHeight="17.0" prefWidth="486.0" textAlignment="CENTER" textFill="#f21616" textOverrun="CLIP" />
-                  <Label layoutX="203.0" layoutY="85.0" prefHeight="25.0" prefWidth="167.0" text="Korisničko ime:" textFill="#d2d4da">
+                  <TextField fx:id="usernameField" layoutX="187.0" layoutY="210.0" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: #b3b5bd;" />
+                  <PasswordField fx:id="passwordField" layoutX="187.0" layoutY="278.0" prefHeight="25.0" prefWidth="240.0" style="-fx-background-color: #b3b5bd;" />
+                  <Button layoutX="245.0" layoutY="336.0" mnemonicParsing="false" onAction="#onLoginBtn" prefHeight="25.0" prefWidth="125.0" styleClass="loginButtons" text="Ulogujte se" />
+                  <Button layoutX="245.0" layoutY="391.0" mnemonicParsing="false" onAction="#onRegisterBtn" prefHeight="25.0" prefWidth="125.0" styleClass="loginButtons" text="Registrujte se" />
+                  <Label fx:id="errorLabel" alignment="CENTER" layoutX="64.0" layoutY="156.0" prefHeight="17.0" prefWidth="486.0" textAlignment="CENTER" textFill="#f21616" textOverrun="CLIP" />
+                  <Label layoutX="203.0" layoutY="175.0" prefHeight="25.0" prefWidth="167.0" text="Korisničko ime:" textFill="#d2d4da">
                      <font>
                         <Font name="Segoe UI" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="203.0" layoutY="155.0" prefHeight="25.0" prefWidth="115.0" text="Lozinka:" textFill="#d2d4da">
+                  <Label layoutX="203.0" layoutY="245.0" prefHeight="25.0" prefWidth="115.0" text="Lozinka:" textFill="#d2d4da">
                      <font>
                         <Font name="Segoe UI" size="15.0" />
                      </font>
                   </Label>
+                  <Label alignment="CENTER" layoutX="97.0" layoutY="95.0" prefHeight="63.0" prefWidth="420.0" text="Uloguj Se" textFill="#d2d4da">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="93.0" fitWidth="115.0" layoutX="261.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/notepad.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

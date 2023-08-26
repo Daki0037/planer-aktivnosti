@@ -1,6 +1,7 @@
 package me.danilo.planeraktivnosti.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import me.danilo.planeraktivnosti.models.User;
@@ -25,6 +26,8 @@ public class Login {
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
+    @FXML
+    private Label errorLabel;
 
     public void onRegisterBtn() {
         screenController.changeScreen("register");
@@ -36,8 +39,9 @@ public class Login {
         String password = passwordField.getText();
 
         user.setUsername(username);
-
+        
         authService.authenticateUser(username, password);
+        errorLabel.setText(authService.getError());
     }
 
 
