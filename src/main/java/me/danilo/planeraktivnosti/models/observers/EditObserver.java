@@ -24,6 +24,12 @@ public class EditObserver {
         listeners.add(listener);
     }
 
+    public void update() {
+        for(Observer listener : listeners) {
+            listener.update();
+        }
+    }
+
     public void update(Activity activity) {
         for(Observer listener : listeners) {
             listener.update(activity);

@@ -1,9 +1,12 @@
 package me.danilo.planeraktivnosti.controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import me.danilo.planeraktivnosti.models.observers.EditObserver;
+import me.danilo.planeraktivnosti.models.observers.MessageObserver;
 import me.danilo.planeraktivnosti.utils.AuthService;
 
 import java.io.BufferedReader;
@@ -22,6 +25,8 @@ public class Register {
     @FXML
     private Label errorLabel;
 
+    private EditObserver editObserver = EditObserver.getInstance();
+
     ScreenController screenController = ScreenController.getInstance();
     AuthService authService = AuthService.getInstance();
 
@@ -39,14 +44,15 @@ public class Register {
         if(!authService.isPasswordValid(password))
             return;
 
+        authService.registerUser(username, password);
+
         usernameField.setText("");
         passwordField.setText("");
 
-        if(!authService.isUsernameValid(username))
-            return;
+        errorLabel.setText(authService.getError());
+        editObserver.update();
 
-        authService.registerUser(username, password);
-        errorLabel.setText(errorLabel.getText());
+        screenController.changeScreen("login");
     }
 
 

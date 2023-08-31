@@ -1,0 +1,29 @@
+.backgroundPane {
+    -fx-background-color: #404252;
+}
+
+.formBackground {
+    -fx-background-color: #5b5d6b;
+    -fx-background-radius: 20px;
+}
+
+.formText {
+    -fx-text-fill: #d2d4da;
+}
+
+.formField {
+    -fx-background-color: #d2d4da;
+}
+
+.formArea {
+    -fx-control-inner-background: #d2d4da;
+}
+
+.formButtons {
+    -fx-text-fill: #d2d4da;
+    -fx-background-color: #404252;
+}
+
+.formButtons:hover {
+    -fx-background-color: #282a3a;
+}

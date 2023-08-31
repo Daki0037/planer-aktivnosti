@@ -4,23 +4,21 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import me.danilo.planeraktivnosti.interfaces.Observer;
+import me.danilo.planeraktivnosti.models.Activity;
 import me.danilo.planeraktivnosti.models.User;
+import me.danilo.planeraktivnosti.models.observers.MessageObserver;
 import me.danilo.planeraktivnosti.utils.AuthService;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class Login {
+public class Login implements Observer {
 
     ScreenController screenController = ScreenController.getInstance();
     AuthService authService = AuthService.getInstance();
     User user = User.getInstance();
+    private MessageObserver messageObserver = MessageObserver.getInstance();
 
     @FXML
     private TextField usernameField;
@@ -28,8 +26,16 @@ public class Login {
     private PasswordField passwordField;
     @FXML
     private Label errorLabel;
+    @FXML
+    private Label successfulLabel;
+
+    @FXML
+    public void initialize() {
+        messageObserver.addListener(this);
+    }
 
     public void onRegisterBtn() {
+        successfulLabel.setText("");
         screenController.changeScreen("register");
     }
 
@@ -44,5 +50,18 @@ public class Login {
         errorLabel.setText(authService.getError());
     }
 
+    @Override
+    public void update() {
 
+    }
+
+    @Override
+    public void update(Activity activity) {
+
+    }
+
+    @Override
+    public void update(String text) {
+        successfulLabel.setText(text);
+    }
 }

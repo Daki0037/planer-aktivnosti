@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../css/ActivityView.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.danilo.planeraktivnosti.controllers.ActivityView">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1024.0" stylesheets="@../css/ActivityView.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="me.danilo.planeraktivnosti.controllers.ActivityView">
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <center>
@@ -17,9 +17,9 @@
          <left>
             <Pane prefHeight="708.0" prefWidth="294.0" style="-fx-background-color: #5b5d6b;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="low" layoutX="7.0" layoutY="100.0" mnemonicParsing="false" onAction="#onLowPriority" prefHeight="36.0" prefWidth="281.0" styleClass="filterButton" text="Mali prioritet">
+                  <Button fx:id="low" layoutX="7.0" layoutY="100.0" mnemonicParsing="false" onAction="#onLowPriority" prefHeight="36.0" prefWidth="281.0" styleClass="filterButton" text="Nizak prioritet">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Nirmala UI" size="14.0" />
                      </font></Button>
                   <Button fx:id="medium" layoutX="7.0" layoutY="159.0" mnemonicParsing="false" onAction="#onMediumPriority" prefHeight="36.0" prefWidth="281.0" styleClass="filterButton" text="Srednji prioritet">
                      <font>
@@ -27,20 +27,40 @@
                      </font></Button>
                   <Button fx:id="high" layoutX="7.0" layoutY="216.0" mnemonicParsing="false" onAction="#onHighPriority" prefHeight="36.0" prefWidth="281.0" styleClass="filterButton" text="Visoki prioritet">
                      <font>
-                        <Font name="Segoe UI Light" size="14.0" />
+                        <Font name="Nirmala UI" size="14.0" />
                      </font></Button>
                   <Button fx:id="all" layoutX="7.0" layoutY="44.0" mnemonicParsing="false" onAction="#onAllPriorities" prefHeight="36.0" prefWidth="281.0" style="-fx-border-color: aliceblue;" styleClass="filterButton" text="Svi prioriteti">
                      <font>
-                        <Font name="Segoe UI" size="14.0" />
+                        <Font name="Nirmala UI" size="14.0" />
                      </font></Button>
                   <Label layoutX="13.0" layoutY="8.0" prefHeight="26.0" prefWidth="207.0" styleClass="textLabel" text="Filtriraj po prioritetima:">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="Nirmala UI" size="16.0" />
                      </font></Label>
                   <Label fx:id="userLabel" layoutX="21.0" layoutY="658.0" prefHeight="36.0" prefWidth="254.0" styleClass="textLabel" text="Korisnik:">
                      <font>
-                        <Font size="22.0" />
+                        <Font name="Nirmala UI" size="22.0" />
                      </font></Label>
+                  <Label layoutX="13.0" layoutY="303.0" prefHeight="26.0" prefWidth="207.0" styleClass="textLabel" text="Filtriraj po statusu:">
+                     <font>
+                        <Font name="Nirmala UI" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="allCompletion" layoutX="8.0" layoutY="339.0" mnemonicParsing="false" onAction="#onAllStatus" prefHeight="36.0" prefWidth="281.0" style="-fx-border-color: aliceblue;" styleClass="filterButton" text="Sve">
+                     <font>
+                        <Font name="Nirmala UI" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="completedButton" layoutX="7.0" layoutY="397.0" mnemonicParsing="false" onAction="#onCompleted" prefHeight="36.0" prefWidth="281.0" styleClass="filterButton" text="Samo završene">
+                     <font>
+                        <Font name="Nirmala UI" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="notCompletedButton" layoutX="7.0" layoutY="455.0" mnemonicParsing="false" onAction="#onNotCompleted" prefHeight="36.0" prefWidth="281.0" styleClass="filterButton" text="Samo nezavršene">
+                     <font>
+                        <Font name="Nirmala UI" size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </left>

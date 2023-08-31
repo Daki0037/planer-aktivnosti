@@ -4,27 +4,31 @@
 
 .activity-first-panel {
     -fx-background-color: #404252;
-    -fx-padding: 10px 0px 10px 0px;
-    -fx-background-radius: 10px 10px 0px 0px;
+    -fx-padding: 10px 5px 10px 5px;
+    -fx-background-radius: 5px 5px 0px 0px;
 }
 
 .activityButtons {
     -fx-background-color: #777986;
     -fx-text-fill: #d2d4da;
     -fx-font-weight: 600;
-    -fx-padding: 0px 5px 0px 5px;
+    -fx-padding: 5px 5px 5px 5px;
+}
+
+.activityButtons:hover {
+    -fx-background-color: #5d5b6d;
 }
 
 .activity-second-panel {
     -fx-background-color: #555870;
-    -fx-padding: 10px 0px 10px 0px;
+    -fx-padding: 10px 5px 10px 5px;
 }
 
 .activity-third-panel {
     -fx-background-color: #70728a;
-    -fx-padding: 10px 0px 10px 0px;
+    -fx-padding: 10px 5px 10px 5px;
     -fx-text-fill: #d2d4da;
-    -fx-background-radius: 0px 0px 10px 10px;
+    -fx-background-radius: 0px 0px 5px 5px;
 }
 
 .activity-pane * {
@@ -62,6 +66,26 @@
     -fx-border-radius: 5px;
 }
 
-.activity-name {
+.lighterButton:hover {
+    -fx-background-color: #5d5b6d;
+}
 
+.activity-completed {
+    -fx-text-fill: lime;
+}
+
+.activity-not-completed {
+    -fx-text-fill: yellow;
+}
+
+.low-priority {
+    -fx-text-fill: #2ca32e;
+}
+
+.medium-priority {
+    -fx-text-fill: orange;
+}
+
+.high-priority {
+    -fx-text-fill: red;
 }

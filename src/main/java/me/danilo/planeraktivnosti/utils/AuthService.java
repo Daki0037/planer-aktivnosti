@@ -8,6 +8,7 @@ import java.net.URL;
 import me.danilo.planeraktivnosti.controllers.ScreenController;
 import me.danilo.planeraktivnosti.models.User;
 import me.danilo.planeraktivnosti.models.observers.FetchObserver;
+import me.danilo.planeraktivnosti.models.observers.MessageObserver;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -24,6 +25,7 @@ public class AuthService {
     private ScreenController screenController = ScreenController.getInstance();
     String error = "";
     private FetchObserver fetchObserver = FetchObserver.getInstance();
+    private MessageObserver messageObserver = MessageObserver.getInstance();
 
     private AuthService() {}
 
@@ -34,17 +36,24 @@ public class AuthService {
     }
 
     public boolean isUsernameValid(String username) {
-        if(username.isBlank() || username.length() > 30)
+        if(username.isBlank() || username.length() > 30) {
+            error = "Korisničko ime nije validno.";
             return false;
+        }
         String pattern = "^(?=[a-zA-Z0-9._]{4,30}$)(?!.*[_.]{2})[^_.].*[^_.]$";
-        if(!username.matches(pattern))
+        if(!username.matches(pattern)) {
+            error = "Korisničko ime nije validno.";
             return false;
+        }
+
         return true;
     }
 
     public boolean isPasswordValid(String password) {
-        if(password.length() < 5)
+        if(password.length() < 5) {
+            error = "Šifra nije validna.";
             return false;
+        }
         return true;
     }
 
@@ -89,6 +98,7 @@ public class AuthService {
             if(connection.getResponseCode() == 400)
                 error = "Korisničko ime je zauzeto.";
 
+            messageObserver.update("Korisnik je uspešno registrovan!");
             connection.disconnect();
         } catch (Exception e) {
             e.printStackTrace();

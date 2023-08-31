@@ -9,25 +9,48 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.danilo.planeraktivnosti.controllers.NewActivity">
+<AnchorPane prefHeight="768.0" prefWidth="1024.0" styleClass="backgroundPane" stylesheets="@../css/ActivityForm.css" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="me.danilo.planeraktivnosti.controllers.NewActivity">
    <children>
-      <Text layoutX="41.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Naziv:" wrappingWidth="76.763671875" />
-      <TextField fx:id="title" layoutX="41.0" layoutY="49.0" prefHeight="25.0" prefWidth="321.0" />
-      <Text layoutX="41.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deskripcija:" />
-      <TextArea fx:id="description" layoutX="41.0" layoutY="111.0" prefHeight="86.0" prefWidth="496.0" />
-      <DatePicker fx:id="startDate" layoutX="41.0" layoutY="307.0" />
-      <DatePicker fx:id="endDate" layoutX="347.0" layoutY="307.0" />
-      <CheckBox fx:id="completed" layoutX="258.0" layoutY="355.0" mnemonicParsing="false" text="Završena" />
-      <Button layoutX="488.0" layoutY="391.0" mnemonicParsing="false" onAction="#onAddActivity" prefHeight="25.0" prefWidth="99.0" text="Dodaj" />
-      <Button layoutX="20.0" layoutY="391.0" mnemonicParsing="false" onAction="#onReturnBtn" prefHeight="25.0" prefWidth="99.0" text="Izadji" />
-      <RadioButton fx:id="low" layoutX="48.0" layoutY="254.0" mnemonicParsing="false" text="Nizak">
-         <toggleGroup>
-            <ToggleGroup fx:id="priorities" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="medium" layoutX="240.0" layoutY="254.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="99.0" selected="true" text="Srednji" toggleGroup="$priorities" />
-      <RadioButton fx:id="high" layoutX="481.0" layoutY="254.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="77.0" text="Visok" toggleGroup="$priorities" />
-      <Label layoutX="65.0" layoutY="216.0" prefHeight="25.0" prefWidth="431.0" text="Izaberite prioritet aktivnosti:" />
+      <Pane layoutX="112.0" layoutY="84.0" prefHeight="600.0" prefWidth="800.0" styleClass="formBackground">
+         <children>
+            <TextField fx:id="title" layoutX="150.0" layoutY="52.0" prefHeight="25.0" prefWidth="500.0" styleClass="formField" />
+            <TextArea fx:id="description" layoutX="152.0" layoutY="131.0" prefHeight="86.0" prefWidth="496.0" styleClass="formArea" />
+            <DatePicker fx:id="startDate" layoutX="152.0" layoutY="351.0" styleClass="formArea" />
+            <DatePicker fx:id="endDate" layoutX="476.0" layoutY="351.0" styleClass="formArea" />
+            <CheckBox fx:id="completed" layoutX="360.0" layoutY="437.0" mnemonicParsing="false" style="-fx-text-fill: #d2d3da;" text="Završena">
+               <font>
+                  <Font name="Nirmala UI" size="14.0" />
+               </font>
+            </CheckBox>
+            <Button layoutX="571.0" layoutY="515.0" mnemonicParsing="false" onAction="#onAddActivity" prefHeight="25.0" prefWidth="99.0" styleClass="formButtons" text="Dodaj" />
+            <Button layoutX="153.0" layoutY="515.0" mnemonicParsing="false" onAction="#onReturnBtn" prefHeight="25.0" prefWidth="99.0" styleClass="formButtons" text="Izadji" />
+            <RadioButton fx:id="low" layoutX="152.0" layoutY="277.0" mnemonicParsing="false" styleClass="formText" text="Nizak">
+               <toggleGroup>
+                  <ToggleGroup fx:id="priorities" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="medium" layoutX="351.0" layoutY="277.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="99.0" selected="true" styleClass="formText" text="Srednji" toggleGroup="$priorities" />
+            <RadioButton fx:id="high" layoutX="582.0" layoutY="277.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="77.0" styleClass="formText" text="Visok" toggleGroup="$priorities" />
+            <Label layoutX="150.0" layoutY="233.0" prefHeight="25.0" prefWidth="500.0" styleClass="formText" text="Izaberite prioritet aktivnosti:">
+               <font>
+                  <Font name="Nirmala UI" size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="150.0" layoutY="25.0" prefHeight="20.0" prefWidth="500.0" styleClass="formText" text="Naziv">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="151.0" layoutY="105.0" prefHeight="20.0" prefWidth="500.0" styleClass="formText" text="Deskripcija">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="errorLabel" alignment="CENTER" layoutX="67.0" layoutY="569.0" prefHeight="17.0" prefWidth="668.0" textAlignment="CENTER" textFill="RED" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

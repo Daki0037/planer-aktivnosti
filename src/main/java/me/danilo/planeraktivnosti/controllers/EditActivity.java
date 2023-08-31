@@ -30,6 +30,8 @@ public class EditActivity implements Observer {
     private RadioButton medium;
     @FXML
     private RadioButton high;
+    @FXML
+    private Label errorLabel;
 
     private ScreenController screenController = ScreenController.getInstance();
     private Activity activity;
@@ -50,7 +52,7 @@ public class EditActivity implements Observer {
     public void onSaveButton() throws IOException {
 
         if(!isValidActivity()) {
-            System.out.println("Nije validna");
+            errorLabel.setText(error);
             return;
         }
 
@@ -93,6 +95,14 @@ public class EditActivity implements Observer {
 
         startDate.setValue(startLocalDate);
         endDate.setValue(endLocalDate);
+
+        error = "";
+        errorLabel.setText("");
+    }
+
+    @Override
+    public void update(String text) {
+
     }
 
     public void selectPriority(Activity activity) {
@@ -132,6 +142,9 @@ public class EditActivity implements Observer {
             return false;
         } else if(startDate.getValue() == null || endDate.getValue() == null) {
             error = "Početni i krajnji datum moraju imati vrednosti!";
+            return false;
+        } else if(endDate.getValue().isBefore(startDate.getValue())) {
+            error = "Krajnji datum ne može biti pre početnog datuma!";
             return false;
         }
         return true;

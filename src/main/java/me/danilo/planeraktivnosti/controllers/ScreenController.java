@@ -28,6 +28,10 @@ public class ScreenController {
         screens.put(name, pane);
     }
 
+    public Pane getScreen(String name) {
+        return screens.get(name);
+    }
+
     public void removeScreens(String name) {
         screens.remove(name);
     }
