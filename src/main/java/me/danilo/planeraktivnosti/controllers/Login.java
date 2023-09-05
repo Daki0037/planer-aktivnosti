@@ -63,5 +63,6 @@ public class Login implements Observer {
     @Override
     public void update(String text) {
         successfulLabel.setText(text);
+        errorLabel.setText("");
     }
 }

@@ -71,7 +71,11 @@ public class AuthService {
             StringEntity entity = new StringEntity(jsonInput);
             httpPost.setEntity(entity);
 
-            readResponse(httpClient, httpPost);
+            try {
+                readResponse(httpClient, httpPost);
+            } catch(Exception e) {
+                error = "Korisničko ime ili šifra nije tačna.";
+            }
 
             httpClient.close();
         } catch (Exception e) {

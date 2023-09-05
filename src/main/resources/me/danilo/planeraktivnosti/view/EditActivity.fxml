@@ -50,6 +50,16 @@
                     </font>
                 </Label>
                 <Label fx:id="errorLabel" alignment="CENTER" layoutX="67.0" layoutY="569.0" prefHeight="17.0" prefWidth="668.0" textAlignment="CENTER" textFill="RED" />
+                <Label layoutX="152.0" layoutY="317.0" prefHeight="17.0" prefWidth="175.0" styleClass="formText" text="Početni datum:">
+                    <font>
+                        <Font name="Nirmala UI" size="14.0" />
+                    </font>
+                </Label>
+                <Label layoutX="476.0" layoutY="317.0" prefHeight="17.0" prefWidth="175.0" styleClass="formText" text="Krajnji datum:">
+                    <font>
+                        <Font name="Nirmala UI" size="14.0" />
+                    </font>
+                </Label>
             </children>
         </Pane>
     </children>

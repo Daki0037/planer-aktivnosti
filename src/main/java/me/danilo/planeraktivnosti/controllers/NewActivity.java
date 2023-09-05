@@ -129,6 +129,7 @@ public class NewActivity implements Observer {
     public void update() {
         error = "";
         errorLabel.setText("");
+        clearFields();
     }
 
     @Override
@@ -139,5 +140,16 @@ public class NewActivity implements Observer {
     @Override
     public void update(String text) {
 
+    }
+
+    public void clearFields() {
+        title.setText("");
+        description.setText("");
+        completed.setSelected(false);
+        startDate.setValue(LocalDate.now());
+        endDate.setValue(LocalDate.now());
+        low.setSelected(false);
+        medium.setSelected(true);
+        high.setSelected(false);
     }
 }
